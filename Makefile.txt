@@ -1,0 +1,17 @@
+JAVAC = javac
+JAR = jar
+MAIN_CLASS = Main
+
+all: $(MAIN_CLASS).jar
+
+$(MAIN_CLASS).jar: UDPServer.class UDPClient.class
+	$(JAR) cvfe $(MAIN_CLASS).jar $(MAIN_CLASS) *.class
+
+UDPServer.class: UDPServer.java UDPClient.java
+        $(JAVAC) UDPServer.java
+
+UDPClient.class: UDPClient.java
+        $(JAVAC) UDPClient.java
+
+clean:
+    rm -f $(MAIN_CLASS).jar *.class
